@@ -1,0 +1,2 @@
+/usr/bin/ar qc libMyDllLib.a CMakeFiles/MyDllLib.dir/my_dll.c.o
+/usr/bin/ranlib libMyDllLib.a

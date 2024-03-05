@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/libdemo.dir/src/main.c.o -o libdemo  MyDllLib/libMyDllLib.a 

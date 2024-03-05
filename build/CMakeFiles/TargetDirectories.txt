@@ -1,0 +1,6 @@
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/CMakeFiles/libdemo.dir
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/CMakeFiles/edit_cache.dir
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/CMakeFiles/rebuild_cache.dir
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/MyDllLib/CMakeFiles/MyDllLib.dir
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/MyDllLib/CMakeFiles/edit_cache.dir
+/home/diogo/docs/masters/first_year/second_semester/setr/setr_a1/build/MyDllLib/CMakeFiles/rebuild_cache.dir
