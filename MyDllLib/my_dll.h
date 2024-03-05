@@ -8,10 +8,28 @@
  * \bug No bugs to report for now
  *
  * */
-
-
 #ifndef __MY_DLL_H__
 #define __MY_DLL_H__
+
+#define MAX_SIZE_LIST 512
+#define MAX_SIZE_ELEMENT 256
+
+#include <stdint.h>
+
+typedef struct stru_node {
+	uint_16t id;
+	unsigned char element[MAX_SIZE_ELEMENT];
+	node *prev;
+	node *next;
+} node;
+
+typedef struct {
+	uint_16t size_elem;
+	uint_16t max_size_list;
+	uint_16t size_list;
+	node *middle_head;
+} dLL;
+
 
 /**
  * \brief Initiates the dLL
