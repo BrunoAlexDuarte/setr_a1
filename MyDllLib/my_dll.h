@@ -18,16 +18,17 @@
 
 typedef struct stru_node {
 	uint_16t id;
-	unsigned char element[MAX_SIZE_ELEMENT];
-	node *prev;
-	node *next;
+	unsigned char element[MAX_SIZE_ELEMENT+1];
+	uint_16t prev;
+	uint_16t next;
 } node;
 
 typedef struct {
 	uint_16t size_elem;
-	uint_16t max_size_list;
 	uint_16t size_list;
-	node *middle_head;
+	node all_nodes[MAX_SIZE_LIST+1];
+	uint_16t place_middle;
+	uint_16t occupied[MAX_SIZE_LIST];
 } dLL;
 
 
