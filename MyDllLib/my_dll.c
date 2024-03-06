@@ -1,7 +1,7 @@
 
 #include "my_dll.h"
 
-static dLL list;
+dLL list;
 
 void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 	/*
@@ -16,38 +16,36 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 	last_node.prev = list_size;
 	last_node.next = list_size;
 	list.all_nodes[list_size] = last_node;
+	for (uint16_t i = 0; i < list_size; i++) {
+		list.all_nodes[i].prev = list_size;
+		list.all_nodes[i].next = list_size;
+	}
 	list.place_middle = list_size;
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
     node node_each;
     uint16_t failure = 1;
-	uint16_t i;
-    for(uint16_t i = 0; i < list.size_list; i++) {
+    uint16_t i;
+    for(i = 0; i < list.size_list; i++) {
         node_each = list.all_nodes[i];
         
         if(list.all_nodes[node_each.next].prev == i && list.all_nodes[node_each.prev].next == i) {
             continue;
         }
 
-        node_each.id = id;
+	//list.all_nodes[i].id = id;
+	node_each.id = id;
         strcpy(node_each.element, element);
-		printf("COPIEI A STRING\n");
         failure = 0;
 		break;
     }
     if (failure) return 1;
-	printf("CONSEGUI ALOCAR NA POSICAO %d\n",i);
-
-	printf("1\n");
+    printf("COLOQUEI NA POSICOA: %d\n", i);
     uint16_t current_index = list.place_middle;
-	printf("2\n");
     node current_node;
 
-	printf("CURRENT INDEX %d\n", current_index);
-	printf("LIST SIZE %d\n", list.size_list);
     while(current_index != list.size_list) {
-		printf("ENTREI AQUI\n");
         current_node = list.all_nodes[current_index];
         if(current_node.id == id) { 
             return 1;
@@ -60,9 +58,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
             node_each.prev = current_node.prev;
             list.all_nodes[current_node.prev].next = i;
             current_node.prev = i;
-			printf("PREV %d\n", node_each.prev);
-			printf("NEXT %d\n", node_each.next);
-			printf("COLOQUEI O ELEMENTO %s\n", node_each.element);
+	    list.all_nodes[i] = node_each;
             return 0;
         } else {
             current_index = current_node.next;
@@ -72,11 +68,13 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 	if(current_index == list.size_list) {
 		list.place_middle = i;
 	}
+    
     current_node = list.all_nodes[current_index];
     node_each.next = current_index;
     node_each.prev = current_node.prev;
     list.all_nodes[current_node.prev].next = i;
     current_node.prev = i;
+    list.all_nodes[i] = node_each;
 	printf("DEI INSERT AQUI\n");
     return 0;
 }
@@ -111,6 +109,7 @@ unsigned char *MyDLLFind(uint16_t id) {
 	
 	while (head != list.size_list) {
 		node node_each = list.all_nodes[head];
+		printf("THE HEAD IS: %d and the id is %d\n",head,node_each.id);
 		if (node_each.id == id) return list.all_nodes[head].element;
 		head = node_each.next;
 	}
