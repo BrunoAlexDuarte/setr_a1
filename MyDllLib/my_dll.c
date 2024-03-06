@@ -53,6 +53,9 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
             return 1;
         }
         if(current_node.id > id) {
+			if(current_index == list.size_list) {
+				list.place_middle = i;
+			}
             node_each.next = current_index;
             node_each.prev = current_node.prev;
             list.all_nodes[current_node.prev].next = i;
@@ -66,6 +69,9 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
         }
     }
 	
+	if(current_index == list.size_list) {
+		list.place_middle = i;
+	}
     current_node = list.all_nodes[current_index];
     node_each.next = current_index;
     node_each.prev = current_node.prev;
