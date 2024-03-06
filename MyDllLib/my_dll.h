@@ -28,8 +28,8 @@ typedef struct {
 	uint16_t size_elem;
 	uint16_t size_list;
 	node all_nodes[MAX_SIZE_LIST+1];
-	uint16_t place_middle;
-	uint16_t occupied[MAX_SIZE_LIST];
+	uint16_t place_middle; //head of the list
+	//uint16_t occupied[MAX_SIZE_LIST];
 } dLL;
 
 
