@@ -15,20 +15,21 @@
 #define MAX_SIZE_ELEMENT 256
 
 #include <stdint.h>
+#include <stdlib.h>
 
 typedef struct stru_node {
-	uint_16t id;
+	uint16_t id;
 	unsigned char element[MAX_SIZE_ELEMENT+1];
-	uint_16t prev;
-	uint_16t next;
+	uint16_t prev;
+	uint16_t next;
 } node;
 
 typedef struct {
-	uint_16t size_elem;
-	uint_16t size_list;
+	uint16_t size_elem;
+	uint16_t size_list;
 	node all_nodes[MAX_SIZE_LIST+1];
-	uint_16t place_middle;
-	uint_16t occupied[MAX_SIZE_LIST];
+	uint16_t place_middle;
+	uint16_t occupied[MAX_SIZE_LIST];
 } dLL;
 
 
@@ -58,7 +59,7 @@ void MyDLLInit();
  * \param[out]
  *
  */
-uint_16t MyDLLInsert(unsigned char *element);
+uint16_t MyDLLInsert(unsigned char *element);
 
 /**
  * \brief Function description
@@ -72,7 +73,7 @@ uint_16t MyDLLInsert(unsigned char *element);
  * \param[out]
  *
  */
-unsigned char *MyDLLRemove(uint_16t id);
+unsigned char *MyDLLRemove(uint16_t id);
 
 /**
  * \brief Function description
@@ -86,7 +87,7 @@ unsigned char *MyDLLRemove(uint_16t id);
  * \param[out]
  *
  */
-unsigned char *MyDLLFind(uint_16t id);
+unsigned char *MyDLLFind(uint16_t id);
 
 /**
  * \brief Function description
