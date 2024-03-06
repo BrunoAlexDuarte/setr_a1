@@ -16,6 +16,8 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 typedef struct stru_node {
 	uint16_t id;
@@ -45,7 +47,7 @@ typedef struct {
  * \param[out]
  *
  */
-void MyDLLInit();
+void MyDLLInit(uint16_t elem_size, uint16_t list_size);
 
 /**
  * \brief Inserts the given element in the dLL and returns the id
@@ -101,7 +103,7 @@ unsigned char *MyDLLFind(uint16_t id);
  * \param[out]
  *
  */
-unsigned char *MyDLLFindNext();
+unsigned char *MyDLLFindNext(uint16_t id);
 
 /**
  * \brief Function description
@@ -115,7 +117,7 @@ unsigned char *MyDLLFindNext();
  * \param[out]
  *
  */
-unsigned char *MyDLLFindPrevious();
+unsigned char *MyDLLFindPrevious(uint16_t id);
 
 
 
