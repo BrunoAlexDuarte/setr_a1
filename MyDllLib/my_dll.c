@@ -13,10 +13,12 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 	 * */
 	list.size_elem = elem_size;
 	list.size_list = list_size;
-
-	list.all_nodes[list_size] = NULL;
+	node last_node;
+	last_node.prev = list_size;
+	last_node.next = list_size;
+	last_node.elem = NULL;
+	list.all_nodes[list_size] = last_node;
 	list.place_middle = list_size;
-	
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
@@ -34,7 +36,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 		uint16_t count = 1;
 		uint16_t current_index = list.place_middle;
 		node current_node;
-		while(current_index != list.s) {
+		while(current_index != list.size_list) {
 			current_node = list.all_nodes[current_index];
 			if(current_node.id == id) { 
 				return 1;
@@ -44,11 +46,14 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 				node_each.prev = current_node.prev;
 				list.all_nodes[current_node.prev].next = i;
 				current_node.prev = i;
+				return 0;
 			} else {
 				current_index = current_node.next;
 			}
 		}
+		return 0;
 	}
+	return 1;
 
 }
 
@@ -56,12 +61,13 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 unsigned char *MyDLLRemove(uint16_t id) {
 	uint16_t head = list.place_middle;
 	uint16_t cont = 1;
+	node node_each;
 
 	while (cont) {
 		//Se estiver a apontar para o local nulo, acaba, não foi achado o elemento
 		if (head == list.size_list) return NULL;
 
-		node node_each = list.all_nodes[head];
+		node_each = list.all_nodes[head];
 		if (node_each.id == id) { //Retira o elemento caso os ids sejam iguais
 			list.all_nodes[node_each.next].prev = node_each.prev;
 			list.all_nodes[node_each.prev].next = node_each.next;
