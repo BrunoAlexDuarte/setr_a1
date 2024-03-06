@@ -119,6 +119,8 @@ unsigned char *MyDLLFindNext(uint16_t id);
  */
 unsigned char *MyDLLFindPrevious(uint16_t id);
 
+void PrintNode(uint16_t i);
+void PrintCABECA();
 
 
 

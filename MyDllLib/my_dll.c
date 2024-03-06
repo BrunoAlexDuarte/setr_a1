@@ -41,7 +41,6 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 		break;
     }
     if (failure) return 1;
-    printf("COLOQUEI NA POSICOA: %d\n", i);
     uint16_t current_index = list.place_middle;
     node current_node;
 
@@ -51,21 +50,22 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
             return 1;
         }
         if(current_node.id > id) {
-			if(current_index == list.size_list) {
+			if(current_index == list.place_middle) {
 				list.place_middle = i;
 			}
             node_each.next = current_index;
             node_each.prev = current_node.prev;
             list.all_nodes[current_node.prev].next = i;
-            current_node.prev = i;
-	    list.all_nodes[i] = node_each;
+            //current_node.prev = i;
+			list.all_nodes[current_index].prev = i;
+	    	list.all_nodes[i] = node_each;
             return 0;
         } else {
             current_index = current_node.next;
         }
     }
 	
-	if(current_index == list.size_list) {
+	if(list.place_middle == list.size_list) {
 		list.place_middle = i;
 	}
     
@@ -73,9 +73,9 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
     node_each.next = current_index;
     node_each.prev = current_node.prev;
     list.all_nodes[current_node.prev].next = i;
-    current_node.prev = i;
+    //current_node.prev = i;
+	list.all_nodes[current_index].prev = i;
     list.all_nodes[i] = node_each;
-	printf("DEI INSERT AQUI\n");
     return 0;
 }
 
@@ -147,6 +147,18 @@ unsigned char *MyDLLFindPrevious(uint16_t id) {
 	return NULL;
 }
 
+void PrintNode(uint16_t i) {
+	printf("=================");
+	printf("NODE %d\n", i);
+	printf("ID %d\n", list.all_nodes[i].id);
+	printf("ELEMENT %s\n", list.all_nodes[i].element);
+	printf("PREV %d\n", list.all_nodes[i].prev);
+	printf("NEXT %d\n", list.all_nodes[i].next);
+	printf("=================");
+}
 
+void PrintCABECA() {
+	printf("CABECA: %d\n", list.place_middle);
+}
 
 //EOF
