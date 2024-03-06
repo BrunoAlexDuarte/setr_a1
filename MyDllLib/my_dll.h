@@ -59,7 +59,7 @@ void MyDLLInit();
  * \param[out]
  *
  */
-uint16_t MyDLLInsert(unsigned char *element);
+uint16_t MyDLLInsert(uint16_t id, unsigned char *element);
 
 /**
  * \brief Function description

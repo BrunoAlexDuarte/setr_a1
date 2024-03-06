@@ -13,34 +13,45 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 	 * */
 	list.size_elem = elem_size;
 	list.size_list = list_size;
+
 	list.all_nodes[list_size] = NULL;
 	list.place_middle = list_size;
-	for (int i = 0; i < list_size; i++) 
-		list.occupied = 0;
+	
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
-	uint16_t head = list.place_middle;
 
-	for (int i = 0; i < list.size_list; i++) {
+	for(uint16_t i = 0; i < list.size_list; i++) {
 		node node_each = list.all_nodes[i];
 		
-		//Vemos se o nós não está livre
-		if (node_each.next.prev == i and node_each.prev.next == i) continue;
+		if(list.all_nodes[node_each.next].prev == i && list.all_nodes[node_each.prev].next == i) {
+			continue;
+		}
 
 		node_each.id = id;
 		strcpy(node_each.element, element);
 
 		uint16_t count = 1;
-		while (count) {
-
+		uint16_t current_index = list.place_middle;
+		node current_node;
+		while(current_index != list.s) {
+			current_node = list.all_nodes[current_index];
+			if(current_node.id == id) { 
+				return 1;
+			}
+			if(current_node.id > id) {
+				node_each.next = current_index;
+				node_each.prev = current_node.prev;
+				list.all_nodes[current_node.prev].next = i;
+				current_node.prev = i;
+			} else {
+				current_index = current_node.next;
+			}
 		}
-
-	
 	}
-	
 
 }
+
 
 unsigned char *MyDLLRemove(uint16_t id) {
 	uint16_t head = list.place_middle;
