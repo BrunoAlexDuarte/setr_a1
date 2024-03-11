@@ -36,11 +36,18 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 
 	//list.all_nodes[i].id = id;
 	node_each.id = id;
+	if (strlen(element) > list.size_elem) {
+		printf("Couldn't add node beacuse the element is to big\n\r");
+		return 1;
+	}
         strcpy(node_each.element, element);
         failure = 0;
 		break;
     }
-    if (failure) return 1;
+    if (failure) {
+	printf("Couldn´t allocate space for new node\n\r");
+	return 1;
+    }
     uint16_t current_index = list.place_middle;
     node current_node;
 
@@ -74,7 +81,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
     node_each.prev = current_node.prev;
     list.all_nodes[current_node.prev].next = i;
     //current_node.prev = i;
-	list.all_nodes[current_index].prev = i;
+    list.all_nodes[current_index].prev = i;
     list.all_nodes[i] = node_each;
     return 0;
 }
@@ -159,6 +166,15 @@ void PrintNode(uint16_t i) {
 
 void PrintCABECA() {
 	printf("CABECA: %d\n", list.place_middle);
+}
+
+void PrintAllList() {
+	uint16_t head = list.place_middle;
+	while (head != list.size_list) {
+		printf("->Node:%d, with element:%s\n", list.all_nodes[head].id, list.all_nodes[head].element);
+		head = list.all_nodes[head].next;
+	}
+
 }
 
 //EOF

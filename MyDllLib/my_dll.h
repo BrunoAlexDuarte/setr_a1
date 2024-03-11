@@ -82,6 +82,7 @@ typedef struct {
 	//uint16_t occupied[MAX_SIZE_LIST];
 } dLL;
 
+void PrintAllList();
 
 
 /**
