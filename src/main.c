@@ -24,9 +24,14 @@ int main(int argc, char **argv) {
 	res = MyDLLInsert(&lista, id, s2);
 	if (res != ELEMENT_TO_BIG) printf("\tFailed miserably_2\n\r");
 
-	uint16_t inc = 30;
+	uint16_t inc = 1000;
+	printf(" ->As the element was to big, will increase size by %d, that is too much\n\r", inc);
+	res = MyDLLElementSizeIncrease(&lista, inc);
+	if (res != SURPASSES_ELEMENT_SIZE_MAX) printf("\tFailed miserably_3\n\r");
+
+	inc = 30;
 	printf(" ->As the element was to big, will increase size by %d\n\r", inc);
-	res = MyDLLElementSizeIncrease(&lista, 30);
+	res = MyDLLElementSizeIncrease(&lista, inc);
 	if (res != SUCCESS) printf("\tFailed miserably_3\n\r");
 
 	printf(" ->Will add node 100 with %s again\n\r", s2);
@@ -45,9 +50,14 @@ int main(int argc, char **argv) {
 	res = MyDLLInsert(&lista, 90, s3);
 	if (res != DLL_FULL) printf("\tFailed miserably_5\n\r");
 	
+	inc = 1000;
+	printf(" ->as the dLL was full, will increase the size by %d, that is too much\n\r", inc);
+	res = MyDLLSizeIncrease(&lista, inc);
+	if (res != SURPASSES_LIST_SIZE_MAX) printf("\tFailed miserably_5\n\r");
+
 	inc = 10;
 	printf(" ->as the dLL was full, will increase the size by %d\n\r", inc);
-	res = MyDLLSizeIncrease(&lista, 3);
+	res = MyDLLSizeIncrease(&lista, inc);
 	if (res != SUCCESS) printf("\tFailed miserably_5\n\r");
 
 	printf(" ->Will add node %d with %s\n\r", id, s4);
@@ -60,7 +70,7 @@ int main(int argc, char **argv) {
 
 	printf(" ->Now show real list\n\r");
 	res = MyDLLPrintAllList(&lista);
-	if (res != DLL_NOT_VALID) printf("\tFailed miserably 8\n\r");
+	if (res != SUCCESS) printf("\tFailed miserably 8\n\r");
 
 	printf(" ->Will add node %d with %s again\n\r", id, s3);
 	res = MyDLLInsert(&lista, id, s3);
@@ -109,6 +119,20 @@ int main(int argc, char **argv) {
 	res = MyDLLFind(&lista, id, res_str);
 	if (res != SUCCESS) printf("\tFailed miserably_18\n\r");
 	printf(" ->O elemento %d string %s\n", id, res_str);
+
+	id = 69;
+	unsigned char res_str2[MAX_SIZE_ELEMENT+1];
+	printf(" ->Will find node next of %d\n\r", id);
+	res = MyDLLFindNext(&lista, id, res_str2);
+	if (res != SUCCESS) printf("\tFailed miserably_18\n\r");
+	printf(" ->O elemento next of %d tem string %s\n", id, res_str2);
+
+	id = 91;
+	unsigned char res_str3[MAX_SIZE_ELEMENT+1];
+	printf(" ->Will find node prev of %d\n\r", id);
+	res = MyDLLFindPrevious(&lista, id, res_str3);
+	if (res != SUCCESS) printf("\tFailed miserably_18\n\r");
+	printf(" ->O elemento prev of %d tem string %s\n", id, res_str3);
 
 	id = 89;
 	printf(" ->Vai tentar remover elemento que não existe\n\r");

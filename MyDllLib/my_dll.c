@@ -117,7 +117,7 @@ uint16_t MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
 				list->place_head = node_each.next;	
 			}
 			char *element_str = list->all_nodes[head].element;
-			void* res =  memcpy(output, element_str, strlen(element_str));
+			void* res =  memcpy(output, element_str, strlen(element_str)+1);
 			if (res == NULL) {
 				return FAILED_TO_MEMCPY_ELEMENT;
 			}
@@ -140,7 +140,7 @@ uint16_t MyDLLFind(dLL *list, uint16_t id, unsigned char *output) {
 		node node_each = list->all_nodes[head];
 		if (node_each.id == id) {
 			char *element_str = list->all_nodes[head].element;
-			void* res =  memcpy(output, element_str, strlen(element_str));
+			void* res =  memcpy(output, element_str, strlen(element_str)+1);
 			if (res == NULL) {
 				return FAILED_TO_MEMCPY_ELEMENT;
 			}
@@ -162,7 +162,7 @@ uint16_t MyDLLFindNext(dLL *list, uint16_t id, unsigned char *output) {
 		if (node_each.id == id) {
 			if (node_each.next != list->size_list) {
 				char *element_str = list->all_nodes[node_each.next].element;
-				void* res =  memcpy(output, element_str, strlen(element_str));
+				void* res =  memcpy(output, element_str, strlen(element_str)+1);
 				if (res == NULL) {
 					return FAILED_TO_MEMCPY_ELEMENT;
 				}
@@ -187,7 +187,7 @@ uint16_t MyDLLFindPrevious(dLL *list, uint16_t id, unsigned char *output) {
 		if (node_each.id == id) {
 			if (node_each.prev != list->size_list) {
 				char *element_str = list->all_nodes[node_each.prev].element;
-				void* res =  memcpy(output, element_str, strlen(element_str));
+				void* res =  memcpy(output, element_str, strlen(element_str)+1);
 				if (res == NULL) {
 					return FAILED_TO_MEMCPY_ELEMENT;
 				}
