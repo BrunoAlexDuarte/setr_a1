@@ -95,6 +95,8 @@ typedef struct {
  * @param[in] elem_size The max size of each element in the doubly linked list.
  * @param[in] list_size The max total size or capacity of the doubly linked list.
  * @param[in] order Specifies the order of the doubly linked list (0 for ascending, 1 for descending).
+ * 
+ * @return Initiliazed doubly linked list with the specified sizes if they are valid, otherwise uses default parameters.
  *
  * @note This function should be called before using any other operations on the doubly linked list.
  * @warning Ensure that elem_size and list_size are valid and within acceptable limits.
@@ -107,6 +109,7 @@ dLL MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
  * 
  * This function inserts a new node with the given ID and element into the doubly linked list.
  *
+ * @param[in] list Pointer to the DLL where the node is being inserted to.
  * @param[in] id The unique identifier for the new node.
  * @param[in] element String value to be stored in the new node.
  *
@@ -124,6 +127,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element);
  * This function removes a node with the given ID from the doubly linked list and returns 
  * the data element (string value) of the removed node.
  *
+ * @param[in] list Pointer to the DLL where the node is being removed from.
  * @param[in] id The unique identifier of the node to be removed.
  * 
  * @return Pointer to the data element of the removed node, or NULL if the node is not found.
@@ -140,6 +144,7 @@ unsigned char *MyDLLRemove(dLL *list,uint16_t id);
  * This function searches for a node with the given ID in the doubly linked list and returns
  * the data element (string value) of the found node.
  *
+ * @param[in] list Pointer to the DLL where the node is being inserted to.
  * @param[in] id The unique identifier of the node to be found.
  * 
  * @return Pointer to the data element of the found node, or NULL if the node is not found.
@@ -156,6 +161,7 @@ unsigned char *MyDLLFind(dLL *list,uint16_t id);
  * This function searches for the node with the given ID in the doubly linked list and returns
  * the data element (string value) of the node that comes after it.
  *
+ * @param[in] list Pointer to the DLL where the node is.
  * @param[in] id The unique identifier of the current node.
  *
  * @return Pointer to the data element of the next node, or NULL if the next node is not found.
@@ -172,6 +178,7 @@ unsigned char *MyDLLFindNext(dLL *list,uint16_t id);
  * This function searches for the node with the given ID in the doubly linked list and returns
  * the data element (string value) of the node that comes before it.
  *
+ * @param[in] list Pointer to the DLL where the node is.
  * @param[in] id The unique identifier of the current node.
  *
  * @return Pointer to the data element of the previous node, or NULL if the previous node is not found.
@@ -187,6 +194,7 @@ unsigned char *MyDLLFindPrevious(dLL *list,uint16_t id);
  *
  * This funtion prints all the information of the node in the position i
  *
+ * @param[in] list Pointer to the DLL where the node is.
  * @param[in] i The position of the node in the array alocator.
  *
  */
@@ -197,6 +205,8 @@ void MyDLLPrintNode(dLL *list,uint16_t i);
  *
  * This function prints details about the node at the head of the doubly linked list,
  * including its unique identifier and data element.
+ * 
+ * @param[in] list Pointer to the DLL from which the head is being printed.
  *
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is not empty before calling this function.
@@ -209,6 +219,8 @@ void MyDLLPrintHead(dLL *list);
  *
  * This function iterates through the entire doubly linked list and prints details
  * about each node, including unique identifiers and data elements.
+ * 
+ * @param[in] list Pointer to the DLL being printed.
  *
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is not empty before calling this function.
@@ -221,6 +233,7 @@ void MyDLLPrintAllList(dLL *list);
  *
  * This function increments the size capacity of the doubly linked list by the specified amount.
  * 
+ * @param[in] list Pointer to the DLL from which the size is being increased.
  * @param[in] size_increment The amount by which to increase the size capacity of the list.
  *
  * @note Use this function when you need to increase the capacity of the doubly linked list.
@@ -234,6 +247,7 @@ void MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
  *
  * This function increments the maximum element size of the doubly linked list by the specified amount.
  * 
+ * @param[in] list Pointer to the DLL from which the element size is being increased.
  * @param[in] size_increment The amount by which to increase the maximum element size of the list.
  *
  * @note Use this function when you need to increase the maximum element size of the doubly linked list.
@@ -247,6 +261,8 @@ void MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
  *
  * This function prints various statistics about the doubly linked list,
  * maximum size, and maximum element size.
+ * 
+ * @param[in] list Pointer to the DLL from which the statistics are being printed.
  *
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is properly initialized before calling this function.
