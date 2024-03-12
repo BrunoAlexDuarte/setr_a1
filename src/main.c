@@ -94,9 +94,9 @@ int main(int argc, char **argv) {
 	res = MyDLLPrintAllList(&lista);
 	if (res != SUCCESS) printf("\tFailed miserably_13\n\r");
 
-	id = 90;
+	id = 10;
 	printf(" ->Will delete node %d\n\r", id);
-	res = MyDLLRemove(&lista, 90, res_str);
+	res = MyDLLRemove(&lista, id, res_str);
 	if (res != SUCCESS) printf("\tFailed miserably_14\n\r");
 	printf(" ->O elemento %d tinha a string %s\n", id, res_str);
 
@@ -104,13 +104,17 @@ int main(int argc, char **argv) {
 	res = MyDLLPrintAllList(&lista);
 	if (res != SUCCESS) printf("\tFailed miserably_15\n\r");
 
+	printf(" ->The new head\n\r");
+	res = MyDLLPrintHead(&lista);
+	if (res != SUCCESS) printf("\tFailed miserably_12\n\r");
+
 	printf(" ->Vai criar uma nova lista tamanhos acima do suposto e tentar achar um elemento nela\n\r");
 	uint16_t new_size = 1000;
 	dLL lista2 = MyDLLInit(new_size, new_size,1);
 	res = MyDLLPrintStats(&lista2);
 	if (res != SUCCESS) printf("\tFailed miserably_16\n\r");
 	
-	id = 10;
+	id = 90;
 	printf(" ->Will find node %d\n\r", id);
 	res = MyDLLFind(&lista2, id, res_str);
 	if (res != ID_NOT_FOUND) printf("\tFailed miserably_17\n\r");
@@ -134,6 +138,11 @@ int main(int argc, char **argv) {
 	if (res != SUCCESS) printf("\tFailed miserably_18\n\r");
 	printf(" ->O elemento prev of %d tem string %s\n", id, res_str3);
 
+	id = 100;
+	printf(" ->Will find node next of %d\n\r", id);
+	res = MyDLLFindNext(&lista, id, res_str3);
+	if (res != ID_NOT_FOUND) printf("\tFailed miserably_18\n\r");
+	
 	id = 89;
 	printf(" ->Vai tentar remover elemento que não existe\n\r");
 	res = MyDLLRemove(&lista, id, res_str);
