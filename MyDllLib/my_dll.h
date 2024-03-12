@@ -24,7 +24,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/** @struct node
+/** @struct stru_node
  *
  *  @brief Represents a node in a doubly linked list.
  *
@@ -32,16 +32,16 @@
  *  including a unique identifier ('id'), an element with a maximum size ('element'),
  *  and indexes to the previous ('prev') and next ('next') nodes in the all_nodes array.
  *
- *  @var node::id
+ *  @var stru_node::id
  *  Unique identifier for the node.
  *
- *  @var node::element
+ *  @var stru_node::element
  *  Data element stored in the node.
  *
- *  @var node::prev
+ *  @var stru_node::prev
  *  Index of the previous node in the all_nodes array
  *
- *  @var node::next
+ *  @var stru_node::next
  *  Index of the next node in the all_nodes array
  *
  */
