@@ -177,7 +177,20 @@ unsigned char *MyDLLFindNext(uint16_t id);
  */
 unsigned char *MyDLLFindPrevious(uint16_t id);
 
-// to be removed (acho eu)
+/**
+ * @brief Prints the node in the position id
+ * This function searches for the node with the given ID in the doubly linked list and returns
+ * the data element (string value) of the node that comes before it.
+ *
+ * @param[in] id The unique identifier of the current node.
+ *
+ * @return Pointer to the data element of the previous node, or NULL if the previous node is not found.
+ *
+ * @note The returned pointer points to the data element of the node that comes before the given ID.
+ * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
+ *
+ */
+
 void PrintNode(uint16_t i);
 void PrintHead();
 

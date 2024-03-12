@@ -10,6 +10,12 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 	 * e colocamos a lista a a pontar para esse mesmo elemento, e colocamos todos
 	 * os elementos de occupied a zero
 	 * */
+	if (MAX_SIZE_LIST < list_size || MAX_SIZE_ELEMENT < elem_size) {
+		printf("Desired size of elem or list surpasses the max size possible, couldn't create list\n\r");
+		printf("The max size of the list is %d and you wanted %d\n\r", MAX_SIZE_LIST, list_size);
+		printf("The max size of the elements is %d and you wanted %d\n\r", MAX_SIZE_ELEMENT, elem_size);
+		return;
+	}
 	list.size_elem = elem_size;
 	list.size_list = list_size;
 	node last_node;
