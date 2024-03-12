@@ -24,7 +24,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/** @struct stru_node
+/** @struct node
  *
  *  @brief Represents a node in a doubly linked list.
  *
@@ -32,20 +32,20 @@
  *  including a unique identifier ('id'), an element with a maximum size ('element'),
  *  and indexes to the previous ('prev') and next ('next') nodes in the all_nodes array.
  *
- *  @var stru_node::id
+ *  @var node::id
  *  Unique identifier for the node.
  *
- *  @var stru_node::element
+ *  @var node::element
  *  Data element stored in the node.
  *
- *  @var stru_node::prev
+ *  @var node::prev
  *  Index of the previous node in the all_nodes array
  *
- *  @var stru_node::next
+ *  @var node::next
  *  Index of the next node in the all_nodes array
  *
  */
-typedef struct stru_node {
+typedef struct {
 	uint16_t id;
 	unsigned char element[MAX_SIZE_ELEMENT+1];
 	uint16_t prev;
@@ -100,7 +100,7 @@ typedef struct {
  * @warning Ensure that elem_size and list_size are valid and within acceptable limits.
  *
  */
-void MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
+dLL MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
 
 /**
  * \brief Inserts a new node with the specified ID and element into the doubly linked list.
@@ -116,7 +116,7 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
  * @warning Ensure that the provided ID is unique within the doubly linked list.
  * 
  */
-uint16_t MyDLLInsert(uint16_t id, unsigned char *element);
+uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element);
 
 /**
  * @brief Removes a node with the specified ID from the doubly linked list.
@@ -132,7 +132,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.  
  *
  */
-unsigned char *MyDLLRemove(uint16_t id);
+unsigned char *MyDLLRemove(dLL *list,uint16_t id);
 
 /**
  * @brief Finds the data element of a node with the specified ID in the doubly linked list.
@@ -148,7 +148,7 @@ unsigned char *MyDLLRemove(uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFind(uint16_t id);
+unsigned char *MyDLLFind(dLL *list,uint16_t id);
 
 /**
  * @brief Finds the data element of the next node after the specified ID in the doubly linked list.
@@ -164,7 +164,7 @@ unsigned char *MyDLLFind(uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFindNext(uint16_t id);
+unsigned char *MyDLLFindNext(dLL *list,uint16_t id);
 
 /**
  * @brief Finds the data element of the previous node before the specified ID in the doubly linked list.
@@ -180,7 +180,7 @@ unsigned char *MyDLLFindNext(uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFindPrevious(uint16_t id);
+unsigned char *MyDLLFindPrevious(dLL *list,uint16_t id);
 
 /**
  * @brief Prints the node in the position i
@@ -190,7 +190,7 @@ unsigned char *MyDLLFindPrevious(uint16_t id);
  * @param[in] i The position of the node in the array alocator.
  *
  */
-void MyDLLPrintNode(uint16_t i);
+void MyDLLPrintNode(dLL *list,uint16_t i);
 
 /**
  * @brief Prints information about the head node of the doubly linked list.
@@ -202,7 +202,7 @@ void MyDLLPrintNode(uint16_t i);
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  * 
  */
-void MyDLLPrintHead();
+void MyDLLPrintHead(dLL *list);
 
 /**
  * @brief Prints information about all nodes in the doubly linked list.
@@ -214,7 +214,7 @@ void MyDLLPrintHead();
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  *
  */
-void MyDLLPrintAllList();
+void MyDLLPrintAllList(dLL *list);
 
 /**
  * @brief Increases the size capacity of the doubly linked list.
@@ -227,7 +227,7 @@ void MyDLLPrintAllList();
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
  */
-void MyDLLSizeIncrease(uint16_t size_increment);
+void MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
 
 /**
  * @brief Increases the maximum element size of the doubly linked list.
@@ -240,7 +240,7 @@ void MyDLLSizeIncrease(uint16_t size_increment);
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
  */
-void MyDLLElementSizeIncrease(uint16_t size_increment);
+void MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
 
 /**
  * @brief Prints statistics about the doubly linked list, including list size and element size.
@@ -252,7 +252,7 @@ void MyDLLElementSizeIncrease(uint16_t size_increment);
  * @warning Ensure that the doubly linked list is properly initialized before calling this function.
  *
  */
-void MyDLLPrintStats();
+void MyDLLPrintStats(dLL *list);
 
 #endif
 //EOF
