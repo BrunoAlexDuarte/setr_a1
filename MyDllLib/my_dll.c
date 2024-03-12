@@ -3,7 +3,7 @@
 
 dLL list;
 
-void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
+void MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order) {
 	/*
 	 * Ao inicializar guardamos o tamanho máximo dos elementos, o tamanho máximo da lista,
 	 * colocamos na posicção list_size+1 um elemento a NULL para o qual as pontas apontam,
@@ -27,6 +27,7 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 		list.all_nodes[i].next = list_size;
 	}
 	list.place_head = list_size;
+	list.order = order;
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
@@ -62,7 +63,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 	    printf("O id já existe");
             return 1;
         }
-        if(current_node.id > id) {
+        if((current_node.id > id && list.order) || (current_node.id < id && !list.order)) {
 			if(current_index == list.place_head) {
 				list.place_head = i;
 			}
@@ -106,9 +107,12 @@ unsigned char *MyDLLRemove(uint16_t id) {
 		if (node_each.id == id) { //Retira o elemento caso os ids sejam iguais
 			list.all_nodes[node_each.next].prev = node_each.prev;
 			list.all_nodes[node_each.prev].next = node_each.next;
+			if (head == list.place_head) {
+				list.place_head = node_each.next;	
+			}
 			return list.all_nodes[head].element;
 		}
-		if (node_each.id < id) {
+		if ((node_each.id < id && list.order) || (node_each.id > id && !list.order)) {
 			head = node_each.next;
 		} else return NULL; 
 		/*else {
@@ -161,6 +165,10 @@ unsigned char *MyDLLFindPrevious(uint16_t id) {
 }
 
 void PrintNode(uint16_t i) {
+	if (i >= list.size_list) {
+		printf("The index is bigger than the list size\n\r");
+		return;
+	}
 	printf("=================");
 	printf("NODE %d\n", i);
 	printf("ID %d\n", list.all_nodes[i].id);
@@ -171,13 +179,14 @@ void PrintNode(uint16_t i) {
 }
 
 void PrintHead() {
-	printf("=================");
-	printf("NODE %d\n", list.place_head);
+	printf("========HEAD=========");
+	uint16_t i = list.place_head;
+	printf("NODE %d\n", i);
 	printf("ID %d\n", list.all_nodes[i].id);
 	printf("ELEMENT %s\n", list.all_nodes[i].element);
 	printf("PREV %d\n", list.all_nodes[i].prev);
 	printf("NEXT %d\n", list.all_nodes[i].next);
-	printf("=================");
+	printf("=========HEAD========\n");
 }
 
 void PrintAllList() {

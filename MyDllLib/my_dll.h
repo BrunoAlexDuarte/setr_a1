@@ -79,7 +79,7 @@ typedef struct {
 	uint16_t size_list;
 	node all_nodes[MAX_SIZE_LIST+1];
 	uint16_t place_head; //head of the list
-	//uint16_t occupied[MAX_SIZE_LIST];
+	uint16_t order;
 } dLL;
 
 /**
@@ -95,7 +95,7 @@ typedef struct {
  * @warning Ensure that elem_size and list_size are valid and within acceptable limits.
  *
  */
-void MyDLLInit(uint16_t elem_size, uint16_t list_size);
+void MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
 
 /**
  * \brief Inserts a new node with the specified ID and element into the doubly linked list.
