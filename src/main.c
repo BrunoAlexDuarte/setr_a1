@@ -3,11 +3,15 @@
 
 int main(int argc, char **argv) {
 	MyDLLInit(200, 2,0);
-	MyDLLInsert(69, "OLa");
-	MyDLLInsert(100, ">BOM DIA");
-	MyDLLInsert(90, ">BOA TARDE");
+	unsigned char s1[] = "oLa"; 
+	MyDLLInsert(69, s1);
+	unsigned char s2[] = ">BOM DIA"; 
+	MyDLLInsert(100, s2);
+	unsigned char s3[] = ">BOA TARDE"; 
+	MyDLLInsert(90, s3);
 	MyDLLSizeIncrease(1);
-	MyDLLInsert(55, "CABE;A DA DOUBLY LINKED LIST");
+	unsigned char s4[] = "CABE;A DA DOUBLY LINKED LIST"; 
+	MyDLLInsert(55, s4);
 	//MyDLLPrintHead();
 	MyDLLPrintAllList();
 	//MyDLLRemove(100);

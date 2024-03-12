@@ -55,7 +55,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 		break;
     }
     if (failure) {
-	printf("Couldn´t allocate space for new node\n\r");
+	printf("Couldn´t allocate space for new node %d\n\r", id);
 	return 1;
     }
     uint16_t current_index = list.place_head;
