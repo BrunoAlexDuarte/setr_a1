@@ -123,7 +123,8 @@ dLL MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
  * @param[in] id The unique identifier for the new node.
  * @param[in] element String value to be stored in the new node.
  *
- * @return 
+ * @return SUCCESS if a node is inserted. DLL_NOT_VALID, ELEMENT_TO_BIG, DLL_FULL or
+ * DUPLICATE_ID if some error occurs.
  *
  * @note The function returns 0 on successful insertion, and -1 if the insertion fails.
  * @warning Ensure that the provided ID is unique within the doubly linked list.
@@ -141,7 +142,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element);
  * @param[in] id The unique identifier of the node to be removed.
  * @param[in] output Pointer to the variable that will contain the element of the removed node.
  * 
- * @return Pointer to the data element of the removed node, or NULL if the node is not found.
+ * @return SUCCESS if a node is removed. ID_NOT_FOUND or DLL_NOT_VALID if some error occurs.
  * 
  * @note The returned pointer is the data element of the removed node.
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.  
@@ -159,8 +160,8 @@ uint16_t MyDLLRemove(dLL *list,uint16_t id, unsigned char *output);
  * @param[in] id The unique identifier of the node to be found.
  * @param[in] output Pointer to the variable that will contain the element of the node found.
  * 
- * @return Pointer to the data element of the found node, or NULL if the node is not found.
- *
+ * @return SUCCESS if the node is found. ID_NOT_FOUND or DLL_NOT_VALID is some error occurs. 
+ * 
  * @note The returned pointer points to the data element of the found node.
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
@@ -177,8 +178,8 @@ uint16_t MyDLLFind(dLL *list,uint16_t id, unsigned char *output);
  * @param[in] id The unique identifier of the current node.
  * @param[in] output Pointer to the variable that will contain the element of the next of the node found.
  *
- * @return Pointer to the data element of the next node, or NULL if the next node is not found.
- *
+ * @return SUCCESS if the node is found. ID_NOT_FOUND or DLL_NOT_VALID is some error occurs. 
+ * 
  * @note The returned pointer points to the data element of the node that comes after the given ID.
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
@@ -195,8 +196,8 @@ uint16_t MyDLLFindNext(dLL *list,uint16_t id, unsigned char *output);
  * @param[in] id The unique identifier of the current node.
  * @param[in] output Pointer to the variable that will contain the element of the previous of the node found.
  *
- * @return Pointer to the data element of the previous node, or NULL if the previous node is not found.
- *
+ * @return SUCCESS if the node is found. ID_NOT_FOUND or DLL_NOT_VALID is some error occurs. 
+ * 
  * @note The returned pointer points to the data element of the node that comes before the given ID.
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
@@ -211,6 +212,8 @@ uint16_t MyDLLFindPrevious(dLL *list,uint16_t id, unsigned char *output);
  * @param[in] list Pointer to the DLL where the node is.
  * @param[in] i The position of the node in the array alocator.
  *
+ * @return SUCCESS is everything works. DLL_NOT_VALID if some error occurs.
+ * 
  */
 uint16_t MyDLLPrintNode(dLL *list,uint16_t i);
 
@@ -221,7 +224,9 @@ uint16_t MyDLLPrintNode(dLL *list,uint16_t i);
  * including its unique identifier and data element.
  * 
  * @param[in] list Pointer to the DLL from which the head is being printed.
- *
+ * 
+ * @return SUCCESS is everything works. DLL_NOT_VALID if some error occurs.
+ * 
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  * 
@@ -236,6 +241,8 @@ uint16_t MyDLLPrintHead(dLL *list);
  * 
  * @param[in] list Pointer to the DLL being printed.
  *
+ * @return SUCCESS is everything works. DLL_NOT_VALID if some error occurs.
+ * 
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  *
@@ -250,6 +257,8 @@ uint16_t MyDLLPrintAllList(dLL *list);
  * @param[in] list Pointer to the DLL from which the size is being increased.
  * @param[in] size_increment The amount by which to increase the size capacity of the list.
  *
+ * @return SUCCESS if size is increased. DLL_NOT_VALID or SURPASSES_LIST_SIZE_MAX if some error occurs.
+ * 
  * @note Use this function when you need to increase the capacity of the doubly linked list.
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
@@ -264,6 +273,9 @@ uint16_t MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
  * @param[in] list Pointer to the DLL from which the element size is being increased.
  * @param[in] size_increment The amount by which to increase the maximum element size of the list.
  *
+ * @return SUCCESS if element size is increased. DLL_NOT_VALID if some error occurs.
+ * 
+ * 
  * @note Use this function when you need to increase the maximum element size of the doubly linked list.
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
@@ -278,6 +290,8 @@ uint16_t MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
  * 
  * @param[in] list Pointer to the DLL from which the statistics are being printed.
  *
+ * @return SUCCESS is everything works. DLL_NOT_VALID if some error occurs.
+ * 
  * @note This function is intended for debugging and informational purposes.
  * @warning Ensure that the doubly linked list is properly initialized before calling this function.
  *
