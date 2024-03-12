@@ -122,7 +122,7 @@ dLL MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order);
  * @param[in] id The unique identifier for the new node.
  * @param[in] element String value to be stored in the new node.
  *
- * @return 0 if the insertion is successful, -1 if the insertion fails (e.g., due to duplicate ID or no more space).
+ * @return 
  *
  * @note The function returns 0 on successful insertion, and -1 if the insertion fails.
  * @warning Ensure that the provided ID is unique within the doubly linked list.
@@ -138,6 +138,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element);
  *
  * @param[in] list Pointer to the DLL where the node is being removed from.
  * @param[in] id The unique identifier of the node to be removed.
+ * @param[in] output Pointer to the variable that will contain the element of the removed node.
  * 
  * @return Pointer to the data element of the removed node, or NULL if the node is not found.
  * 
@@ -145,7 +146,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.  
  *
  */
-unsigned char *MyDLLRemove(dLL *list,uint16_t id);
+uint16_t MyDLLRemove(dLL *list,uint16_t id, unsigned char *output);
 
 /**
  * @brief Finds the data element of a node with the specified ID in the doubly linked list.
@@ -155,6 +156,7 @@ unsigned char *MyDLLRemove(dLL *list,uint16_t id);
  *
  * @param[in] list Pointer to the DLL where the node is being inserted to.
  * @param[in] id The unique identifier of the node to be found.
+ * @param[in] output Pointer to the variable that will contain the element of the node found.
  * 
  * @return Pointer to the data element of the found node, or NULL if the node is not found.
  *
@@ -162,7 +164,7 @@ unsigned char *MyDLLRemove(dLL *list,uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFind(dLL *list,uint16_t id);
+uint16_t MyDLLFind(dLL *list,uint16_t id, unsigned char *output);
 
 /**
  * @brief Finds the data element of the next node after the specified ID in the doubly linked list.
@@ -172,6 +174,7 @@ unsigned char *MyDLLFind(dLL *list,uint16_t id);
  *
  * @param[in] list Pointer to the DLL where the node is.
  * @param[in] id The unique identifier of the current node.
+ * @param[in] output Pointer to the variable that will contain the element of the next of the node found.
  *
  * @return Pointer to the data element of the next node, or NULL if the next node is not found.
  *
@@ -179,7 +182,7 @@ unsigned char *MyDLLFind(dLL *list,uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFindNext(dLL *list,uint16_t id);
+uint16_t MyDLLFindNext(dLL *list,uint16_t id, unsigned char *output);
 
 /**
  * @brief Finds the data element of the previous node before the specified ID in the doubly linked list.
@@ -189,6 +192,7 @@ unsigned char *MyDLLFindNext(dLL *list,uint16_t id);
  *
  * @param[in] list Pointer to the DLL where the node is.
  * @param[in] id The unique identifier of the current node.
+ * @param[in] output Pointer to the variable that will contain the element of the previous of the node found.
  *
  * @return Pointer to the data element of the previous node, or NULL if the previous node is not found.
  *
@@ -196,7 +200,7 @@ unsigned char *MyDLLFindNext(dLL *list,uint16_t id);
  * @warning Ensure that the provided ID corresponds to an existing node in the doubly linked list.
  *
  */
-unsigned char *MyDLLFindPrevious(dLL *list,uint16_t id);
+uint16_t MyDLLFindPrevious(dLL *list,uint16_t id, unsigned char *output);
 
 /**
  * @brief Prints the node in the position i
