@@ -13,6 +13,9 @@ project(MyDll
 # Ask if the user wants to generate documentation
 option(GENERATE_DOC "Generate Doxygen documentation for the project?")
 
+# Ask for treating warnings as errors and for additional warnings. Default value is off
+option(WARN_GENERATE_ERR "Extra warnings and warnings generate errors?" ON)
+
 if(GENERATE_DOC)
 	# Generate documentation if Doxygen is found
 	find_package(Doxygen
@@ -25,6 +28,7 @@ if(GENERATE_DOC)
 		message(STATUS "Doxygen not found, not building docs")
 	endif()
 endif()
+
 
 # Add the MyDllLib folder to the build
 # CMake will look for a CMakeLists.txt in that folder and will process it
@@ -44,3 +48,12 @@ target_link_libraries(libdemo PUBLIC ${EXTRA_LIBS})
 
 # Specifies include directories to use when compiling a given target
 target_include_directories(libdemo PUBLIC ${EXTRA_INCLUDES})
+
+# Set compiler options for module
+if(WARN_GENERATE_ERR)
+	message("Extra warnings and warnings treated as errors active")
+	target_compile_options(libdemo
+		PRIVATE
+		-Wall -Werror
+	)
+endif()
