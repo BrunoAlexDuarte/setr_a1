@@ -19,6 +19,15 @@
 #define MAX_SIZE_LIST 512
 #define MAX_SIZE_ELEMENT 256
 
+#define SUCCESS 0
+#define DLL_FULL 1
+#define DLL_NOT_VALID 2
+#define ELEMENT_TO_BIG 3
+#define DUPLICATE_ID 4
+#define SURPASSES_LIST_SIZE_MAX 5
+#define SURPASSES_ELEMENT_SIZE_MAX 6
+#define INVALID_ID 7
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>

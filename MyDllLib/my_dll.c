@@ -35,6 +35,10 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
     node node_each;
     uint16_t failure = 1;
     uint16_t i;
+
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
     for(i = 0; i < list->size_list; i++) {
         node_each = list->all_nodes[i];
         if(list->all_nodes[node_each.next].prev == i && list->all_nodes[node_each.prev].next == i) {
@@ -45,7 +49,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
 	node_each.id = id;
 	if (strlen(element) > list->size_elem) {
 		printf("Couldn't add node beacuse the element is to big\n\r");
-		return 1;
+		return ELEMENT_TO_BIG;
 	}
         strcpy(node_each.element, element);
         failure = 0;
@@ -53,7 +57,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
     }
     if (failure) {
 	printf("Couldn´t allocate space for new node %d\n\r", id);
-	return 1;
+	return DLL_FULL;
     }
     uint16_t current_index = list->place_head;
     node current_node;
@@ -62,7 +66,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
         current_node = list->all_nodes[current_index];
         if(current_node.id == id) { 
 			printf("Couldn't insert node, duplicate id detected\n\r");
-            return 1;
+            return DUPLICATE_ID;
         }
         if((current_node.id > id && list->order) || (current_node.id < id && !list->order)) {
 			if(current_index == list->place_head) {
@@ -74,7 +78,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
             //current_node.prev = i;
 			list->all_nodes[current_index].prev = i;
 	    	list->all_nodes[i] = node_each;
-            return 0;
+            return SUCCESS;
         } else {
             current_index = current_node.next;
         }
@@ -91,11 +95,14 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
     //current_node.prev = i;
     list->all_nodes[current_index].prev = i;
     list->all_nodes[i] = node_each;
-    return 0;
+    return SUCCESS;
 }
 
 
 unsigned char *MyDLLRemove(dLL *list, uint16_t id) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	uint16_t head = list->place_head;
 	node node_each;
 
@@ -121,6 +128,9 @@ unsigned char *MyDLLRemove(dLL *list, uint16_t id) {
 }
 
 unsigned char *MyDLLFind(dLL *list, uint16_t id) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	uint16_t head = list->place_head;
 	
 	while (head != list->size_list) {
@@ -133,6 +143,9 @@ unsigned char *MyDLLFind(dLL *list, uint16_t id) {
 }
 
 unsigned char *MyDLLFindNext(dLL *list, uint16_t id) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	uint16_t head = list->place_head;
 	
 	while (head != list->size_list) {
@@ -149,6 +162,9 @@ unsigned char *MyDLLFindNext(dLL *list, uint16_t id) {
 }
 
 unsigned char *MyDLLFindPrevious(dLL *list, uint16_t id) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	uint16_t head = list->place_head;
 	
 	while (head != list->size_list) {
@@ -163,7 +179,10 @@ unsigned char *MyDLLFindPrevious(dLL *list, uint16_t id) {
 	return NULL;
 }
 
-void MyDLLSizeIncrease(dLL *list, uint16_t size_increment) {
+uint16_t MyDLLSizeIncrease(dLL *list, uint16_t size_increment) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	if (size_increment+list->size_list < MAX_SIZE_LIST) {
 		uint16_t old_size = list->size_list;
 		uint16_t new_size = list->size_list + size_increment;
@@ -172,25 +191,33 @@ void MyDLLSizeIncrease(dLL *list, uint16_t size_increment) {
 		list->all_nodes[list->all_nodes[old_size].prev].next = new_size;
 		list->all_nodes[list->all_nodes[old_size].next].prev = new_size;
 		list->size_list = new_size;
-		return;
+		return SUCCESS;
 	}
 	printf("We couldn't increase the list size by %d\n\r", size_increment);
+	return SURPASSES_LIST_SIZE_MAX;
 
 }
 
-void MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment) {
+uint16_t MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	if(size_increment+list->size_elem < MAX_SIZE_LIST) {
 		list->size_elem += size_increment;
-		return;
+		return SUCCESS;
 	}
 	printf("We couldn't increase the element size by %d\n\r", size_increment);
+	return SURPASSES_ELEMENT_SIZE_MAX;
 }	
 
 
-void MyDLLPrintNode(dLL *list, uint16_t i) {
+uint16_t MyDLLPrintNode(dLL *list, uint16_t i) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	if (i >= list->size_list) {
 		printf("The index is bigger than the list size\n\r");
-		return;
+		return INVALID_ID;
 	}
 	printf("=================");
 	printf("NODE %d\n", i);
@@ -199,9 +226,13 @@ void MyDLLPrintNode(dLL *list, uint16_t i) {
 	printf("PREV %d\n", list->all_nodes[i].prev);
 	printf("NEXT %d\n", list->all_nodes[i].next);
 	printf("=================");
+	return SUCCESS;
 }
 
-void MyDLLPrintHead(dLL *list) {
+uint16_t MyDLLPrintHead(dLL *list) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	printf("========HEAD=========");
 	uint16_t i = list->place_head;
 	printf("NODE %d\n", i);
@@ -210,21 +241,29 @@ void MyDLLPrintHead(dLL *list) {
 	printf("PREV %d\n", list->all_nodes[i].prev);
 	printf("NEXT %d\n", list->all_nodes[i].next);
 	printf("=========HEAD========\n");
+	return SUCCESS;
 }
 
-void MyDLLPrintAllList(dLL *list) {
+uint16_t MyDLLPrintAllList(dLL *list) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	uint16_t head = list->place_head;
 	while (head != list->size_list) {
 		printf("->Node:%d, with element:%s\n", list->all_nodes[head].id, list->all_nodes[head].element);
 		head = list->all_nodes[head].next;
 	}
-
+	return SUCCESS;
 }
 
-void MyDLLPrintStats(dLL *list) {
+uint16_t MyDLLPrintStats(dLL *list) {
+	if (list == NULL) {
+	    return DLL_NOT_VALID;
+	}
 	printf("The list size is %d\n\r", list->size_list);
 	printf("The nodes element size is %d\n\r", list->size_elem);
 	printf("The maximum possible sizes for each are %d and %d\n\r", MAX_SIZE_LIST, MAX_SIZE_ELEMENT);
+	return SUCCESS;
 }
 
 //EOF
