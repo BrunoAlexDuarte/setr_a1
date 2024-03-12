@@ -24,8 +24,13 @@ int main(int argc, char **argv) {
 	printf("Will add node 55 with %s\n\r", s4);
 	MyDLLPrintAllList(&lista);
 	printf("Will delete node 90\n\r");
-	MyDLLRemove(&lista, 90);
+	unsigned char retirou[256];
+	MyDLLRemove(&lista, 90, retirou);
+	printf("O elemento 90 tinha a string %s\n", retirou);
 	MyDLLPrintAllList(&lista);
+	MyDLLFind(&lista, 55, retirou);
+	printf("O elemento 55 tinha a string %s\n", retirou);
+	MyDLLFind(&lista, 89, retirou);
 	return 0;
 }
 

@@ -99,7 +99,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
 }
 
 
-uint16_t *MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
+uint16_t MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -129,7 +129,7 @@ uint16_t *MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
 	return ID_NOT_FOUND;
 }
 
-uint16_t *MyDLLFind(dLL *list, uint16_t id, unsigned char *output) {
+uint16_t MyDLLFind(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -148,7 +148,7 @@ uint16_t *MyDLLFind(dLL *list, uint16_t id, unsigned char *output) {
 	return ID_NOT_FOUND;
 }
 
-uint16_t *MyDLLFindNext(dLL *list, uint16_t id, unsigned char *output) {
+uint16_t MyDLLFindNext(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -170,7 +170,7 @@ uint16_t *MyDLLFindNext(dLL *list, uint16_t id, unsigned char *output) {
 
 }
 
-uint16_t *MyDLLFindPrevious(dLL *list, uint16_t id, unsigned char *output) {
+uint16_t MyDLLFindPrevious(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}

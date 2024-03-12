@@ -212,7 +212,7 @@ uint16_t MyDLLFindPrevious(dLL *list,uint16_t id, unsigned char *output);
  * @param[in] i The position of the node in the array alocator.
  *
  */
-void MyDLLPrintNode(dLL *list,uint16_t i);
+uint16_t MyDLLPrintNode(dLL *list,uint16_t i);
 
 /**
  * @brief Prints information about the head node of the doubly linked list.
@@ -226,7 +226,7 @@ void MyDLLPrintNode(dLL *list,uint16_t i);
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  * 
  */
-void MyDLLPrintHead(dLL *list);
+uint16_t MyDLLPrintHead(dLL *list);
 
 /**
  * @brief Prints information about all nodes in the doubly linked list.
@@ -240,7 +240,7 @@ void MyDLLPrintHead(dLL *list);
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  *
  */
-void MyDLLPrintAllList(dLL *list);
+uint16_t MyDLLPrintAllList(dLL *list);
 
 /**
  * @brief Increases the size capacity of the doubly linked list.
@@ -254,7 +254,7 @@ void MyDLLPrintAllList(dLL *list);
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
  */
-void MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
+uint16_t MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
 
 /**
  * @brief Increases the maximum element size of the doubly linked list.
@@ -268,7 +268,7 @@ void MyDLLSizeIncrease(dLL *list, uint16_t size_increment);
  * @warning Ensure that the size_increment value is valid and within acceptable limits.
  *
  */
-void MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
+uint16_t MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
 
 /**
  * @brief Prints statistics about the doubly linked list, including list size and element size.
@@ -282,7 +282,7 @@ void MyDLLElementSizeIncrease(dLL *list, uint16_t size_increment);
  * @warning Ensure that the doubly linked list is properly initialized before calling this function.
  *
  */
-void MyDLLPrintStats(dLL *list);
+uint16_t MyDLLPrintStats(dLL *list);
 
 #endif
 //EOF
