@@ -2,23 +2,30 @@
 #include "../MyDllLib/my_dll.h"
 
 int main(int argc, char **argv) {
-	MyDLLInit(200, 2,0);
+	printf("Will initialize list with elem_sisze 5 and list_size 1, ascending\n\r");
+	MyDLLInit(5, 2,1);
 	unsigned char s1[] = "oLa"; 
+	printf("will add node 69 with %s\n\r", s1);
 	MyDLLInsert(69, s1);
 	unsigned char s2[] = ">BOM DIA"; 
+	printf("will add node 100 with %s\n\r", s2);
+	MyDLLInsert(100, s2);
+	MyDLLElementSizeIncrease(30);
+	printf("will add node 100 with %s\n\r", s2);
 	MyDLLInsert(100, s2);
 	unsigned char s3[] = ">BOA TARDE"; 
+	printf("will add node 90 with %s\n\r", s3);
 	MyDLLInsert(90, s3);
-	MyDLLSizeIncrease(1);
+	MyDLLSizeIncrease(3);
+	printf("will add node 90 with %s\n\r", s3);
+	MyDLLInsert(90, s3);
 	unsigned char s4[] = "CABE;A DA DOUBLY LINKED LIST"; 
 	MyDLLInsert(55, s4);
-	//MyDLLPrintHead();
+	printf("will add node 55 with %s\n\r", s4);
 	MyDLLPrintAllList();
-	//MyDLLRemove(100);
-	//PrintAllList();
-	//MyDLLPrintHead();
-	//MyDLLInsert(55, "ADEUS");
-	//printf("o elemento e %s\n",MyDLLFind(3));
+	printf("Will delete node 90\n\r");
+	MyDLLRemove(90);
+	MyDLLPrintAllList();
 	return 0;
 }
 
