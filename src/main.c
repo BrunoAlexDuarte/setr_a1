@@ -2,13 +2,13 @@
 #include "../MyDllLib/my_dll.h"
 
 int main(int argc, char **argv) {
-	MyDLLInit(8, 3);
+	MyDLLInit(200, 2);
 	MyDLLInsert(69, "OLa");
-	PrintCABECA();
+	PrintHead();
 	MyDLLInsert(100, ">BOM DIA");
-	PrintCABECA();
+	PrintHead();
 	MyDLLInsert(90, ">BOA TARDE");
-	PrintCABECA();
+	PrintHead();
 	MyDLLInsert(55, "CABE;A DA DOUBLY LINKED LIST");
 	/*PrintCABECA();
 	PrintNode(3);

@@ -59,7 +59,7 @@ typedef struct stru_node {
  *  This structure contains metadata about a doubly linked list, including the max size
  *  of each element ('size_elem'), the max size of the list ('size_list'), an array
  *  of nodes that form the doubly linked list ('all_nodes'), and the index of the head
- *  node ('place_middle')
+ *  node ('place_head')
  *
  *  @var dLL::size_elem 
  *  Max size of each element in the list.
@@ -70,7 +70,7 @@ typedef struct stru_node {
  *  @var dLL::all_nodes
  *  Array of nodes forming the doubly linked list.
  *
- *  @var dLL::place_middle
+ *  @var dLL::place_head
  *  Index of the head node.
  *
  */
@@ -78,12 +78,9 @@ typedef struct {
 	uint16_t size_elem;
 	uint16_t size_list;
 	node all_nodes[MAX_SIZE_LIST+1];
-	uint16_t place_middle; //head of the list
+	uint16_t place_head; //head of the list
 	//uint16_t occupied[MAX_SIZE_LIST];
 } dLL;
-
-void PrintAllList();
-
 
 /**
  * @brief Initializes a doubly linked list with specified max element size and max list size.
@@ -182,7 +179,9 @@ unsigned char *MyDLLFindPrevious(uint16_t id);
 
 // to be removed (acho eu)
 void PrintNode(uint16_t i);
-void PrintCABECA();
+void PrintHead();
+
+void PrintAllList();
 
 
 

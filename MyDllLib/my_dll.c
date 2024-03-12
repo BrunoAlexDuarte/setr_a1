@@ -20,7 +20,7 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size) {
 		list.all_nodes[i].prev = list_size;
 		list.all_nodes[i].next = list_size;
 	}
-	list.place_middle = list_size;
+	list.place_head = list_size;
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
@@ -29,7 +29,6 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
     uint16_t i;
     for(i = 0; i < list.size_list; i++) {
         node_each = list.all_nodes[i];
-        
         if(list.all_nodes[node_each.next].prev == i && list.all_nodes[node_each.prev].next == i) {
             continue;
         }
@@ -48,17 +47,18 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 	printf("Couldn´t allocate space for new node\n\r");
 	return 1;
     }
-    uint16_t current_index = list.place_middle;
+    uint16_t current_index = list.place_head;
     node current_node;
 
     while(current_index != list.size_list) {
         current_node = list.all_nodes[current_index];
         if(current_node.id == id) { 
+	    printf("O id já existe");
             return 1;
         }
         if(current_node.id > id) {
-			if(current_index == list.place_middle) {
-				list.place_middle = i;
+			if(current_index == list.place_head) {
+				list.place_head = i;
 			}
             node_each.next = current_index;
             node_each.prev = current_node.prev;
@@ -72,8 +72,8 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
         }
     }
 	
-	if(list.place_middle == list.size_list) {
-		list.place_middle = i;
+	if(list.place_head == list.size_list) {
+		list.place_head = i;
 	}
     
     current_node = list.all_nodes[current_index];
@@ -88,7 +88,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
 
 
 unsigned char *MyDLLRemove(uint16_t id) {
-	uint16_t head = list.place_middle;
+	uint16_t head = list.place_head;
 	uint16_t cont = 1;
 	node node_each;
 
@@ -112,7 +112,7 @@ unsigned char *MyDLLRemove(uint16_t id) {
 }
 
 unsigned char *MyDLLFind(uint16_t id) {
-	uint16_t head = list.place_middle;
+	uint16_t head = list.place_head;
 	
 	while (head != list.size_list) {
 		node node_each = list.all_nodes[head];
@@ -124,7 +124,7 @@ unsigned char *MyDLLFind(uint16_t id) {
 }
 
 unsigned char *MyDLLFindNext(uint16_t id) {
-	uint16_t head = list.place_middle;
+	uint16_t head = list.place_head;
 	
 	while (head != list.size_list) {
 		node node_each = list.all_nodes[head];
@@ -140,7 +140,7 @@ unsigned char *MyDLLFindNext(uint16_t id) {
 }
 
 unsigned char *MyDLLFindPrevious(uint16_t id) {
-	uint16_t head = list.place_middle;
+	uint16_t head = list.place_head;
 	
 	while (head != list.size_list) {
 		node node_each = list.all_nodes[head];
@@ -164,12 +164,12 @@ void PrintNode(uint16_t i) {
 	printf("=================");
 }
 
-void PrintCABECA() {
-	printf("CABECA: %d\n", list.place_middle);
+void PrintHead() {
+	printf("HeaHeadd: %d\n", list.place_head);
 }
 
 void PrintAllList() {
-	uint16_t head = list.place_middle;
+	uint16_t head = list.place_head;
 	while (head != list.size_list) {
 		printf("->Node:%d, with element:%s\n", list.all_nodes[head].id, list.all_nodes[head].element);
 		head = list.all_nodes[head].next;
