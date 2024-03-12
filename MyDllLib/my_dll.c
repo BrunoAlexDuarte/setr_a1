@@ -171,7 +171,13 @@ void PrintNode(uint16_t i) {
 }
 
 void PrintHead() {
-	printf("HeaHeadd: %d\n", list.place_head);
+	printf("=================");
+	printf("NODE %d\n", list.place_head);
+	printf("ID %d\n", list.all_nodes[i].id);
+	printf("ELEMENT %s\n", list.all_nodes[i].element);
+	printf("PREV %d\n", list.all_nodes[i].prev);
+	printf("NEXT %d\n", list.all_nodes[i].next);
+	printf("=================");
 }
 
 void PrintAllList() {
