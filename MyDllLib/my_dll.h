@@ -28,6 +28,7 @@
 #define SURPASSES_ELEMENT_SIZE_MAX 6
 #define INVALID_INDEX 7
 #define ID_NOT_FOUND 8
+#define FAILED_TO_MEMCPY_ELEMENT 9
 
 #include <stdint.h>
 #include <stdlib.h>

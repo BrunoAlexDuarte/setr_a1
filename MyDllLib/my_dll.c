@@ -116,15 +116,15 @@ uint16_t MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
 				list->place_head = node_each.next;	
 			}
 			char *element_str = list->all_nodes[head].element;
-			memcpy(output, element_str, strlen(element_str));
+			void* res =  memcpy(output, element_str, strlen(element_str));
+			if (res == NULL) {
+				return FAILED_TO_MEMCPY_ELEMENT;
+			}
 			return SUCCESS;
 		}
 		if ((node_each.id < id && list->order) || (node_each.id > id && !list->order)) {
 			head = node_each.next;
 		} else return ID_NOT_FOUND; 
-		/*else {
-			head = node_each.prev;
-		}*/
 	}
 	return ID_NOT_FOUND;
 }

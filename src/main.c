@@ -2,8 +2,8 @@
 #include "../MyDllLib/my_dll.h"
 
 int main(int argc, char **argv) {
-	printf("Will initialize list with elem_sisze 5 and list_size 1, ascending\n\r");
-	dLL lista = MyDLLInit(5, 2,0);
+	printf("Will initialize list with elem_sisze 5 and list_size 2, ascending\n\r");
+	dLL lista = MyDLLInit(1000, 2,0);
 	unsigned char s1[] = "oLa"; 
 	printf("Will add node 69 with %s\n\r", s1);
 	MyDLLInsert(&lista, 69, s1);
@@ -30,7 +30,10 @@ int main(int argc, char **argv) {
 	MyDLLPrintAllList(&lista);
 	MyDLLFind(&lista, 55, retirou);
 	printf("O elemento 55 tinha a string %s\n", retirou);
-	MyDLLFind(&lista, 89, retirou);
+	uint16_t res = MyDLLFind(&lista, 89, retirou);
+	if (res!=0) printf("O find falhou\n");
+	res = MyDLLRemove(&lista, 89, retirou);
+	if (res!=0) printf("O remove falhou\n");
 	return 0;
 }
 
