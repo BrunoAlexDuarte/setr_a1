@@ -27,7 +27,11 @@ void MyDLLInit(uint16_t elem_size, uint16_t list_size, uint16_t order) {
 		list.all_nodes[i].next = list_size;
 	}
 	list.place_head = list_size;
-	list.order = order;
+	if(order > 1){
+		list.order = 0;	
+	} else {
+		list.order = order;
+	}
 }
 
 uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
@@ -60,7 +64,7 @@ uint16_t MyDLLInsert(uint16_t id, unsigned char *element) {
     while(current_index != list.size_list) {
         current_node = list.all_nodes[current_index];
         if(current_node.id == id) { 
-	    printf("O id já existe");
+			printf("Couldn't insert node, duplicate id detected\n\r");
             return 1;
         }
         if((current_node.id > id && list.order) || (current_node.id < id && !list.order)) {
@@ -164,9 +168,10 @@ unsigned char *MyDLLFindPrevious(uint16_t id) {
 	return NULL;
 }
 
-void MyDLLSizeIncrease(uint16_t new_size) {
-	if (new_size > list.size_list && new_size < MAX_SIZE_LIST) {
+void MyDLLSizeIncrease(uint16_t size_increment) {
+	if (size_increment+list.size_list < MAX_SIZE_LIST) {
 		uint16_t old_size = list.size_list;
+		uint16_t new_size = list.size_list + size_increment;
 		list.all_nodes[new_size].prev = list.all_nodes[old_size].prev;
 		list.all_nodes[new_size].next = list.all_nodes[old_size].next;
 		list.all_nodes[list.all_nodes[old_size].prev].next = new_size;
@@ -174,14 +179,17 @@ void MyDLLSizeIncrease(uint16_t new_size) {
 		list.size_list = new_size;
 		return;
 	}
-	printf("We couldn't increase the list size\n\r");
+	printf("We couldn't increase the list size by %d\n\r", size_increment);
 
 }
 
-void MyDLLElementSizeIncrease(uint16_t new_size() {
-
-
-		}
+void MyDLLElementSizeIncrease(uint16_t size_increment) {
+	if(size_increment+list.size_elem < MAX_SIZE_LIST) {
+		list.size_elem += size_increment;
+		return;
+	}
+	printf("We couldn't increase the element size by %d\n\r", size_increment);
+}	
 
 
 void MyDLLPrintNode(uint16_t i) {
@@ -218,7 +226,7 @@ void MyDLLPrintAllList() {
 
 }
 
-void MyDLLPrintListStats() {
+void MyDLLPrintStats() {
 	printf("The list size is %d\n\r", list.size_list);
 	printf("The nodes element size is %d\n\r", list.size_elem);
 	printf("The maximum possible sizes for each are %d and %d\n\r", MAX_SIZE_LIST, MAX_SIZE_ELEMENT);

@@ -6,13 +6,13 @@ int main(int argc, char **argv) {
 	MyDLLInsert(69, "OLa");
 	MyDLLInsert(100, ">BOM DIA");
 	MyDLLInsert(90, ">BOA TARDE");
-	MyDLLSizeIncrease(10);
+	MyDLLSizeIncrease(1);
 	MyDLLInsert(55, "CABE;A DA DOUBLY LINKED LIST");
-	MyDLLPrintHead();
+	//MyDLLPrintHead();
 	MyDLLPrintAllList();
-	MyDLLRemove(100);
+	//MyDLLRemove(100);
 	//PrintAllList();
-	MyDLLPrintHead();
+	//MyDLLPrintHead();
 	//MyDLLInsert(55, "ADEUS");
 	//printf("o elemento e %s\n",MyDLLFind(3));
 	return 0;

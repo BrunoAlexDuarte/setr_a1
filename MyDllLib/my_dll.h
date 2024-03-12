@@ -73,6 +73,9 @@ typedef struct stru_node {
  *  @var dLL::place_head
  *  Index of the head node.
  *
+ *  @var dLL::order
+ *  Specified the order in which new nodes are inserted (0 for ascending, 1 for descending)
+ * 
  */
 typedef struct {
 	uint16_t size_elem;
@@ -83,13 +86,15 @@ typedef struct {
 } dLL;
 
 /**
- * @brief Initializes a doubly linked list with specified max element size and max list size.
+ * @brief Initializes a doubly linked list with specified max element size, max list size, and order.
  *
- * This function initializes a doubly linked list by setting the element size, list size and
- * and preparing the necessary memory structures.
+ * This function initializes a doubly linked list by setting the element size, list size,
+ * and preparing the necessary memory structures. The order parameter determines whether
+ * the list inserts new nodes in ascending (order=0) or descending (order=1) order.
  * 
  * @param[in] elem_size The max size of each element in the doubly linked list.
  * @param[in] list_size The max total size or capacity of the doubly linked list.
+ * @param[in] order Specifies the order of the doubly linked list (0 for ascending, 1 for descending).
  *
  * @note This function should be called before using any other operations on the doubly linked list.
  * @warning Ensure that elem_size and list_size are valid and within acceptable limits.
@@ -211,8 +216,43 @@ void MyDLLPrintHead();
  */
 void MyDLLPrintAllList();
 
-void MyDLLSizeIncrease(uint16_t new_size);
-void MyDLLElementSizeIncrease(uint16_t new_size);
-void MyDLLPrintListStats();
+/**
+ * @brief Increases the size capacity of the doubly linked list.
+ *
+ * This function increments the size capacity of the doubly linked list by the specified amount.
+ * 
+ * @param[in] size_increment The amount by which to increase the size capacity of the list.
+ *
+ * @note Use this function when you need to increase the capacity of the doubly linked list.
+ * @warning Ensure that the size_increment value is valid and within acceptable limits.
+ *
+ */
+void MyDLLSizeIncrease(uint16_t size_increment);
+
+/**
+ * @brief Increases the maximum element size of the doubly linked list.
+ *
+ * This function increments the maximum element size of the doubly linked list by the specified amount.
+ * 
+ * @param[in] size_increment The amount by which to increase the maximum element size of the list.
+ *
+ * @note Use this function when you need to increase the maximum element size of the doubly linked list.
+ * @warning Ensure that the size_increment value is valid and within acceptable limits.
+ *
+ */
+void MyDLLElementSizeIncrease(uint16_t size_increment);
+
+/**
+ * @brief Prints statistics about the doubly linked list, including list size and element size.
+ *
+ * This function prints various statistics about the doubly linked list,
+ * maximum size, and maximum element size.
+ *
+ * @note This function is intended for debugging and informational purposes.
+ * @warning Ensure that the doubly linked list is properly initialized before calling this function.
+ *
+ */
+void MyDLLPrintStats();
+
 #endif
 //EOF
