@@ -185,7 +185,7 @@ unsigned char *MyDLLFindPrevious(uint16_t id);
  * @param[in] i The position of the node in the array alocator.
  *
  */
-void PrintNode(uint16_t i);
+void MyDLLPrintNode(uint16_t i);
 
 /**
  * @brief Prints information about the head node of the doubly linked list.
@@ -197,7 +197,7 @@ void PrintNode(uint16_t i);
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  * 
  */
-void PrintHead();
+void MyDLLPrintHead();
 
 /**
  * @brief Prints information about all nodes in the doubly linked list.
@@ -209,9 +209,10 @@ void PrintHead();
  * @warning Ensure that the doubly linked list is not empty before calling this function.
  *
  */
-void PrintAllList();
+void MyDLLPrintAllList();
 
-
-
+void MyDLLSizeIncrease(uint16_t new_size);
+void MyDLLElementSizeIncrease(uint16_t new_size);
+void MyDLLPrintListStats();
 #endif
 //EOF
