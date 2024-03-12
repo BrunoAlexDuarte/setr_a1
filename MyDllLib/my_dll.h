@@ -192,8 +192,29 @@ unsigned char *MyDLLFindPrevious(uint16_t id);
  */
 
 void PrintNode(uint16_t i);
+
+/**
+ * @brief Prints information about the head node of the doubly linked list.
+ *
+ * This function prints details about the node at the head of the doubly linked list,
+ * including its unique identifier and data element.
+ *
+ * @note This function is intended for debugging and informational purposes.
+ * @warning Ensure that the doubly linked list is not empty before calling this function.
+ * 
+ */
 void PrintHead();
 
+/**
+ * @brief Prints information about all nodes in the doubly linked list.
+ *
+ * This function iterates through the entire doubly linked list and prints details
+ * about each node, including unique identifiers and data elements.
+ *
+ * @note This function is intended for debugging and informational purposes.
+ * @warning Ensure that the doubly linked list is not empty before calling this function.
+ *
+ */
 void PrintAllList();
 
 
