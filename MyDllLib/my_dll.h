@@ -26,7 +26,8 @@
 #define DUPLICATE_ID 4
 #define SURPASSES_LIST_SIZE_MAX 5
 #define SURPASSES_ELEMENT_SIZE_MAX 6
-#define INVALID_ID 7
+#define INVALID_INDEX 7
+#define ID_NOT_FOUND 8
 
 #include <stdint.h>
 #include <stdlib.h>

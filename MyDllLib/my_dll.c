@@ -99,7 +99,7 @@ uint16_t MyDLLInsert(dLL *list, uint16_t id, unsigned char *element) {
 }
 
 
-unsigned char *MyDLLRemove(dLL *list, uint16_t id) {
+uint16_t *MyDLLRemove(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -115,19 +115,21 @@ unsigned char *MyDLLRemove(dLL *list, uint16_t id) {
 			if (head == list->place_head) {
 				list->place_head = node_each.next;	
 			}
-			return list->all_nodes[head].element;
+			char *element_str = list->all_nodes[head].element;
+			memcpy(output, element_str, strlen(element_str));
+			return SUCCESS;
 		}
 		if ((node_each.id < id && list->order) || (node_each.id > id && !list->order)) {
 			head = node_each.next;
-		} else return NULL; 
+		} else return ID_NOT_FOUND; 
 		/*else {
 			head = node_each.prev;
 		}*/
 	}
-	return NULL;
+	return ID_NOT_FOUND;
 }
 
-unsigned char *MyDLLFind(dLL *list, uint16_t id) {
+uint16_t *MyDLLFind(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -136,13 +138,17 @@ unsigned char *MyDLLFind(dLL *list, uint16_t id) {
 	while (head != list->size_list) {
 		node node_each = list->all_nodes[head];
 		printf("THE HEAD IS: %d and the id is %d\n",head,node_each.id);
-		if (node_each.id == id) return list->all_nodes[head].element;
+		if (node_each.id == id) {
+			char *element_str = list->all_nodes[head].element;
+			memcpy(output, element_str, strlen(element_str));
+			return SUCCESS;
+		}
 		head = node_each.next;
 	}
-	return NULL;
+	return ID_NOT_FOUND;
 }
 
-unsigned char *MyDLLFindNext(dLL *list, uint16_t id) {
+uint16_t *MyDLLFindNext(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -151,17 +157,20 @@ unsigned char *MyDLLFindNext(dLL *list, uint16_t id) {
 	while (head != list->size_list) {
 		node node_each = list->all_nodes[head];
 		if (node_each.id == id) {
-			if (node_each.next != list->size_list) 
-				return list->all_nodes[node_each.next].element;
-			return NULL;
+			if (node_each.next != list->size_list) {
+				char *element_str = list->all_nodes[node_each.next].element;
+				memcpy(output, element_str, strlen(element_str));
+				return SUCCESS;
+			}
+			return ID_NOT_FOUND;
 		}
 		head = node_each.next;
 	}
-	return NULL;
+	return ID_NOT_FOUND;
 
 }
 
-unsigned char *MyDLLFindPrevious(dLL *list, uint16_t id) {
+uint16_t *MyDLLFindPrevious(dLL *list, uint16_t id, unsigned char *output) {
 	if (list == NULL) {
 	    return DLL_NOT_VALID;
 	}
@@ -170,13 +179,16 @@ unsigned char *MyDLLFindPrevious(dLL *list, uint16_t id) {
 	while (head != list->size_list) {
 		node node_each = list->all_nodes[head];
 		if (node_each.id == id) {
-			if (node_each.prev != list->size_list) 
-				return list->all_nodes[node_each.prev].element;
-			return NULL;
+			if (node_each.prev != list->size_list) {
+				char *element_str = list->all_nodes[node_each.prev].element;
+				memcpy(output, element_str, strlen(element_str));
+				return SUCCESS;
+			}
+			return ID_NOT_FOUND;
 		}
 		head = node_each.next;
 	}
-	return NULL;
+	return ID_NOT_FOUND;
 }
 
 uint16_t MyDLLSizeIncrease(dLL *list, uint16_t size_increment) {
@@ -217,7 +229,7 @@ uint16_t MyDLLPrintNode(dLL *list, uint16_t i) {
 	}
 	if (i >= list->size_list) {
 		printf("The index is bigger than the list size\n\r");
-		return INVALID_ID;
+		return INVALID_INDEX;
 	}
 	printf("=================");
 	printf("NODE %d\n", i);
